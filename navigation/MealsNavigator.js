@@ -19,6 +19,12 @@ const defaultStackNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white",
   },
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold'
+  },
+  headerBackTitleStyle: {
+    fontFamily: 'open-sans'
+  },
   headerTintColor: Platform.OS === "ios" ? Colors.primaryColor : "white",
 };
 
@@ -79,21 +85,35 @@ const tabScreenConfig = {
 const MealsFavTapNavigator =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
-        activeColor: "white",
-        shifting: true,
-        barStyle: {
-          backgroundColor: Colors.primaryColor,
-        },
-      })
+      activeColor: "white",
+      shifting: true,
+      barStyle: {
+        backgroundColor: Colors.primaryColor,
+      },
+    })
     : createBottomTabNavigator(tabScreenConfig, {
-        tabBarOptions: {
-          activeTintColor: Colors.accentColor,
+      tabBarOptions: {
+        labelStyle: {
+          fontFamily: 'open-sans'
         },
-      });
+        activeTintColor: Colors.accentColor,
+      },
+    });
 
 const MainNavigator = createDrawerNavigator({
-  MealFavs: MealsFavTapNavigator,
+  MealFavs: {
+    screen: MealsFavTapNavigator, navigationOptions: {
+      drawerLabel: 'Meals'
+    }
+  },
   Filters: FiltersNavigator,
+}, {
+  contentOptions: {
+    activeTintColor: Colors.accentColor,
+    lableStyle: {
+      fontFamily: 'open-sans-bold'
+    }
+  }
 });
 
 export default createAppContainer(MainNavigator);

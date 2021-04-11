@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
+import { LogBox } from "react-native";
 import * as Font from "expo-font";
 
 import MealsNavigator from "./navigation/MealsNavigator";
@@ -31,3 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+LogBox.ignoreLogs([
+  "Your project is accessing the following APIs from a deprecated global rather than a module import: Constants (expo-constants).",
+]);
