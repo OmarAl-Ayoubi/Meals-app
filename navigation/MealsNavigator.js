@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, Text } from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -68,6 +68,7 @@ const tabScreenConfig = {
         );
       },
       tabBarColor: Colors.primaryColor,
+      tabBarLable: Platform.OS === 'android' ? <Text style={{ fontFamily: 'open-sans-bold' }}>Meals</Text> : 'Meals'
     },
   },
   Favorites: {
@@ -78,6 +79,7 @@ const tabScreenConfig = {
         return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
       },
       tabBarColor: Colors.accentColor,
+      tabBarLable: Platform.OS === 'android' ? <Text style={{ fontFamily: 'open-sans-bold' }}>Favorits</Text> : 'Favorits'
     },
   },
 };
