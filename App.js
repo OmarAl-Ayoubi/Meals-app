@@ -17,13 +17,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer);
 
-const fetchFonts = () => {
-  Font.useFonts({
-    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
-  });
-};
-
 export default function App() {
   const [loaded] = Font.useFonts({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -32,17 +25,12 @@ export default function App() {
   if (!loaded) {
     return null;
   }
-  return <MealsNavigator />;
+  return (
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 LogBox.ignoreLogs([
   "Your project is accessing the following APIs from a deprecated global rather than a module import: Constants (expo-constants).",
